@@ -8,12 +8,12 @@ call vundle#begin()
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plugin 'git@github.com:gmarik/Vundle.vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
+Plugin 'git@github.com:tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 Plugin 'L9'
 " Git plugin not hosted on GitHub
@@ -23,33 +23,33 @@ Plugin 'git://git.wincent.com/command-t.git'
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " B
 " Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'git@github.com:rstacruz/sparkup', {'rtp': 'vim/'}
 " Avoid a name conflict with L9
 " Plugin 'user/L9', {'name': 'newL9'}
 
-Plugin 'fatih/vim-go'
+Plugin 'git@github.com:fatih/vim-go'
 
 " Plugin 'Valloric/YouCompleteMe'
 
-Plugin 'majutsushi/tagbar'
+Plugin 'git@github.com:majutsushi/tagbar'
 
-Plugin 'ervandew/supertab'
+Plugin 'git@github.com:ervandew/supertab'
 
 " Plugin 'Townk/vim-autoclose'
 
-Plugin 'scrooloose/syntastic'
+Plugin 'git@github.com:scrooloose/syntastic'
 
-Plugin 'scrooloose/nerdtree'
+Plugin 'git@github.com:scrooloose/nerdtree'
 
-Plugin 'tomtom/tcomment_vim'
+Plugin 'git@github.com:tomtom/tcomment_vim'
 
-Plugin 'Lokaltog/vim-easymotion'
+Plugin 'git@github.com:Lokaltog/vim-easymotion'
 
-Plugin 'mileszs/ack.vim'
+Plugin 'git@github.com:mileszs/ack.vim'
 
-Plugin 'kien/ctrlp.vim'
+Plugin 'git@github.com:kien/ctrlp.vim'
 
-Plugin 'jiangmiao/auto-pairs'
+Plugin 'git@github.com:jiangmiao/auto-pairs'
 
 Plugin 'git@github.com:benmills/vimux'
 
@@ -59,6 +59,7 @@ Plugin 'git@github.com:nvie/vim-flake8'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+
 syntax enable                " Turn on syntax highlighting.
 filetype plugin on
 set ofu=syntaxcomplete#Complete
@@ -105,6 +106,9 @@ set directory=.,$TEMP  " Keep swap files in one location
 set backupdir=.,$TEMP  " Keep swap files in one location
 
 set expandtab                    " Use spaces instead of tabs
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 
 set laststatus=2                  " Show the status line all the time
 
@@ -188,6 +192,8 @@ nmap <F4> :TagbarToggle<CR>
 
 au BufRead,BufNewFile *.md set filetype=markdown
 au BufWritePost *.go silent! !~/gocode/bin/gotags -R -sort *.go > tags &
+" Enable Flake8 for python files
+autocmd BufWritePost *.py call Flake8()
 
 let g:VimuxOrientation = "h"
 let g:VimuxHeight = "40"
